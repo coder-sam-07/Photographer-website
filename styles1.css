@@ -1,0 +1,465 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+
+body {
+  background-image: url('assets/freepik__expand__51646.jpg');
+  background-size: cover; /* Adjusts the image to cover the full screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating */
+  background-attachment: fixed; /* Keeps the image fixed when scrolling */
+}
+
+
+:root {
+  --text-dark: #171717;
+  --text-light: #525252;
+  --extra-light: #a3a3a3;
+  --white: #ffffff;
+  --max-width: 1200px;
+  --header-font: "Merriweather", serif;
+  --nav-font: "Montserrat", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  width: 100%;
+  background-color: transparent; /* Makes background transparent */
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute; /* Keeps navbar on top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensures navbar stays above other elements */
+}
+
+
+.nav__logo img {
+  max-width: 100px;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__links li {
+  position: relative;
+}
+
+.nav__links a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem;
+  transition: 0.3s;
+  position: relative;
+  font-family: var(--nav-font); /* Ensure Montserrat applies */
+  font-size: 16px;
+}
+
+/* .nav__links a:hover {
+  color: var(--extra-light);
+} */
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--white);
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav__links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--text-dark);
+  min-width: 200px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none; /* Removes bullet points */
+  padding: 0; 
+}
+
+.dropdown a {
+  padding: 0.75rem;
+  display: block;
+  color: var(--white);
+  font-family: var(--nav-font);
+}
+
+.dropdown a:hover {
+  background-color: var(--text-light);
+}
+
+.nav__links li:hover .dropdown {
+  display: flex;
+}
+
+/* Updated Navbar Items */
+.nav__links {
+  justify-content: flex-end;
+}
+
+.nav__links li:last-child {
+  margin-right: 0;
+}
+
+/* Home Section - Fullscreen */
+#home {
+  height: 100vh;
+  background: url('your-background-image.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  text-align: center;
+  color: white;
+}
+
+/* .home-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+} */
+
+/* Portfolio Section */
+#portfolio {
+  text-align: center;
+  padding: 50px 5%;
+  background-color: #f5f5f5;
+}
+
+#portfolio h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+/* Gallery Grid Layout - Like the Screenshot */
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 300px;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.portfolio-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+/* Move the welcome text slightly to the right */
+#welcome-text {
+  display: inline-block;
+  position: relative;
+  left: 50px; /* Adjust this value to move more */
+  color: white;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Change color on hover */
+#welcome-text:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffcc00;
+}
+
+#services {
+  text-align: center;
+  padding: 60px 5%;
+  background-color: #f8f8f8;
+  width: 100%;
+}
+
+.service-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.service-box {
+  width: 30%;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.service-box {
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-box:hover {
+  transform: translateY(-10px); /* Moves up slightly */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adds depth */
+}
+
+.service-box img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.book-btn {
+  background-color: #d9534f;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.book-btn:hover {
+  background-color: #c9302c;
+}
+
+.service-box h3 {
+  margin-bottom: 15px; /* Space below heading */
+  font-size: 22px;
+}
+
+.service-box p {
+  margin-bottom: 20px; /* Space below paragraph */
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.book-btn {
+  margin-top: 10px; /* Space above button */
+}
+
+.about__container {
+  background-color: white; /* White background */
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center;
+  padding: 50px;
+  box-sizing: border-box; /* Prevent extra spacing issues */
+}
+
+.about__container h2 {
+  font-size: 2.8rem; /* Bigger heading */
+  margin-bottom: 25px;
+}
+
+.about__container p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  max-width: 80%;
+  margin-bottom: 20px;
+}
+
+.about__container img {
+  width: 200px;
+  margin-top: 30px;
+}
+.section__description {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+footer {
+  background-color: #fff; /* White background */
+  padding: 80px 0; /* Increase padding to match About section */
+  text-align: center;
+  width: 100vw; /* Full window width */
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  border-top: 2px solid #ddd; /* Thin top border */
+}
+
+.footer__col {
+  flex: 1;
+  text-align: center;
+  min-width: 300px;
+}
+
+.footer__col:nth-child(1) {
+  text-align: left; /* Align links to the left */
+}
+
+.footer__col:nth-child(3) {
+  text-align: right; /* Align "Stay in Touch" to the right */
+}
+
+.footer__col h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.footer__col p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.footer__col img {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+.footer__socials {
+  margin-top: 15px;
+}
+
+.footer__socials a {
+  font-size: 22px;
+  margin: 0 12px;
+  color: #000;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer__socials a:hover {
+  color: #ff5733;
+}
+
+.footer__links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer__links li {
+  margin: 10px 0;
+}
+
+.footer__links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer__links a:hover {
+  color: #ff5733;
+}
+
+.footer__bar {
+  text-align: center;
+  padding: 20px 0;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  margin-top: 30px;
+  border-top: 2px solid #ddd;
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #dfe7d8; /* Light green background */
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.close-btn {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.submit-btn {
+  background: #5a8a63;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #4b7554;
+}

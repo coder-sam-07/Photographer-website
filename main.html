@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Website</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <nav>
+        <div class="nav__logo">
+            <img src="assets/logo-white.png" alt="Photography Logo">
+        </div>
+        <ul class="nav__links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li class="dropdown-container">
+                <a href="#services">Service</a>
+                <ul class="dropdown">
+                    <li><a href="#photo-shoot">Photo Shoot</a></li>
+                    <li><a href="#video-shoot">Video Shoot</a></li>
+                    <li><a href="#wedding-shoot">Wedding Shoot</a></li>
+                </ul>
+            </li>           
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contactus">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Home Section with Fullscreen Background -->
+    <section id="home">
+        <div class="home-content">
+            <h1>
+                <a href="#portfolio" id="welcome-text">Welcome to My Photography<br>Explore my best shots and edits</a>
+                
+            </h1>
+            <!-- <p>Explore my best shots and edits</p> -->
+        </div>
+    </section>
+    
+
+<!-- Portfolio Section -->
+<section id="portfolio">
+    <h2>MY PORTFOLIO</h2>
+    <div class="portfolio-gallery">
+        <img src="assets/client-1.jpg" alt="Portfolio Image 1">
+        <img src="assets/client-2.jpg" alt="Portfolio Image 2">
+        <img src="assets/client-3.jpg" alt="Portfolio Image 3">
+        <img src="assets/image-1.jpg" alt="Portfolio Image 4">
+        <img src="assets/image-4.jpg" alt="Portfolio Image 5">
+        <img src="assets/image-5.jpg" alt="Portfolio Image 6">
+        <img src="assets/image-3.jpg" alt="Portfolio Image 6">
+        <img src="assets/image-2.jpg" alt="Portfolio Image 6">
+        <img src="assets/image-7.jpg" alt="Portfolio Image 6">
+    </div>
+</section>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <div class="service-container">
+        <div class="service-box" id="photo-shoot">
+            <img src="assets/fashion-image.jpg" alt="Fashion Photography">
+            <h3>Fashion Photography</h3>
+            <p>Get amazing portraits in a matter of minutes. Book 2 days prior.</p>
+            <button class="book-btn">Book Now</button>
+        </div>
+        <div class="service-box" id="wedding-shoot">
+            <img src="assets/event-image.jpg" alt="Event Photography">
+            <h3>Event Photography</h3>
+            <p>Capture your events in the most amazing way. Book before a week.</p>
+            <button class="book-btn">Book Now</button>
+        </div>
+        <div class="service-box" id="video-shoot">
+            <img src="assets/viedography.jpg" alt="Videography">
+            <h3>Videography</h3>
+            <p>Your life and events as cinema. Top-notch filmmaking for your budget.</p>
+            <button class="book-btn">Book Now</button>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Form Modal -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Book Now</h2>
+        <form action="send_email.php" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        
+            <label for="contact">Contact No</label>
+            <input type="text" id="contact" name="contact" placeholder="Enter your contact number" required>
+        
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+            <label for="event-name">Event Name</label>
+            <input type="text" id="event-name" name="event_name" placeholder="Enter event name" required>
+        
+            <label for="event-venue">Event Venue</label>
+            <input type="text" id="event-venue" name="event_venue" placeholder="Enter event venue" required>
+        
+            <label>Choose Your Service</label>
+            <div class="radio-group">
+                <input type="radio" id="portrait" name="service" value="Portrait" required>
+                <label for="portrait">Portrait Photography</label>
+        
+                <input type="radio" id="event" name="service" value="Event">
+                <label for="event">Event Photography</label>
+        
+                <input type="radio" id="video" name="service" value="Video">
+                <label for="video">Videography</label>
+            </div>
+        
+            <label for="special-request">Any Special Request</label>
+            <textarea id="special-request" name="special_request" placeholder="Enter your request"></textarea>
+        
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        
+    </div>
+</div>
+<div id="successMessage" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h2>Booked</h2>
+        <p>Thank you for registering for our event.</p>
+        <span class="close-btn" onclick="closeSuccessMessage()">&times;</span>
+    </div>
+</div>
+
+<div class="section__container about__container" id="about">
+    <h2 class="section__header">WE CAPTURE THE MOMENTS</h2>
+    <p class="section__description">
+      At Capturer, we specialize in freezing those fleeting moments in time
+      that hold immense significance for you. With our passion for photography
+      and keen eye for detail, we transform ordinary moments into
+      extraordinary memories.
+    </p>
+    <p class="section__description">
+      Whether it's a milestone event, a candid portrait, or the breathtaking
+      beauty of nature, we strive to encapsulate the essence of every moment,
+      ensuring that your cherished memories last a lifetime. Trust us to
+      capture the magic of your life's journey, one frame at a time.
+    </p>
+    <img src="assets/logo-dark.png" alt="logo" />
+  </div>
+   
+  <footer id="contact">
+    <div class="section__container footer__container">
+      <div class="footer__col">
+        <img src="assets/logo-dark.png" alt="logo" />
+        <div class="footer__socials">
+          <a href="#"><i class="ri-facebook-fill"></i></a>
+          <a href="#"><i class="ri-instagram-line"></i></a>
+          <a href="#"><i class="ri-twitter-fill"></i></a>
+          <a href="#"><i class="ri-youtube-fill"></i></a>
+          <a href="#"><i class="ri-pinterest-line"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <ul class="footer__links">
+          <li><a href="#home">HOME</a></li>
+          <li><a href="#about">ABOUT US</a></li>
+          <li><a href="#service">SERVICES</a></li>
+          <li><a href="#client">CLIENT</a></li>
+          <li><a href="#blog">BLOG</a></li>
+          <li><a href="#contact">CONTACT US</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>STAY IN TOUCH</h4>
+        <p>
+          Keep up-to-date with all things Capturer! Join our community and
+          never miss a moment!
+        </p>
+      </div>
+    </div>
+    <div class="footer__bar">
+      Copyright © 2024 Web Design Mastery. All rights reserved.
+    </div>
+  </footer>
+  <script src="book.js"></script>  
+  <script src="script.js"></script>
+</body>
+</html>
