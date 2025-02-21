@@ -45,35 +45,107 @@
       </nav>
     </header>
     <!-- Login & Register Modal -->
-<div id="auth-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <div class="auth-forms">
-      <!-- Login Form -->
-      <div id="login-form"  class="form-container">
-        <h2>Login</h2>
-        <form  >
-          <input type="email" id="email" placeholder="Email" required />
-          <input type="password" id="password" placeholder="Password" required />
-          <button onclick="login(event)">Login</button>
-          <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
-          <p id="errorMessage" style="color: red;"></p>
-        </form>
-      </div>
-
-      <!-- Register Form -->
-      <div id="register-form" class="form-container hidden">
-        <h2>Register</h2>
-        <form action="register.php" method="POST">
-          <input type="email" name="email" placeholder="Enter your email" required/>
-          <input type="password" name="password" placeholder="Create a password" required/>
-          <button type="submit">Register</button>
-          <p>Already have an account? <a href="#" id="show-login">Login</a></p>
-       </form>      
+    <div id="auth-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="auth-forms">
+          
+          <!-- Login Form -->
+          <div id="login-form" class="form-container">
+            <h2>Login</h2>
+            <form onsubmit="login(event)">
+              <input type="email" id="login-email" placeholder="Email" required />
+              <input type="password" id="login-password" placeholder="Password" required />
+              <button type="submit">Login</button>
+              <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+              <p id="loginErrorMessage" style="color: red;"></p>
+            </form>
+          </div>
+    
+          <!-- Register Form -->
+          <div id="register-form" class="form-container hidden">
+            <h2>Register</h2>
+            <form onsubmit="register(event)">
+              <input type="email" id="register-email" placeholder="Enter your email" required/>
+              <input type="password" id="register-password" placeholder="Create a password" required/>
+              <button type="submit">Register</button>
+              <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+              <p id="registerErrorMessage" style="color: red;"></p>
+           </form>      
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    
+    <script>
+    // 🔹 REGISTER FUNCTION
+    async function register(event) {
+        event.preventDefault();
+    
+        const email = document.getElementById("register-email").value;
+        const password = document.getElementById("register-password").value;
+    
+        try {
+            const response = await fetch("http://localhost:3000/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+    
+            const data = await response.json();
+            document.getElementById("registerErrorMessage").textContent = data.message;
+    
+            if (data.success) {
+                document.getElementById("registerErrorMessage").style.color = "green";
+                setTimeout(() => {
+                    document.getElementById("show-login").click();
+                }, 1000);
+            }
+        } catch (error) {
+            console.error("Registration Error:", error);
+        }
+    }
+    
+    // 🔹 LOGIN FUNCTION
+    async function login(event) {
+    event.preventDefault();
+
+    // Ensure elements exist
+    const emailInput = document.getElementById("login-email");
+    const passwordInput = document.getElementById("login-password");
+
+    if (!emailInput || !passwordInput) {
+        console.error("Login inputs not found!");
+        return;
+    }
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    try {
+        const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+        document.getElementById("loginErrorMessage").textContent = data.message;
+
+        if (data.success) {
+            document.getElementById("loginErrorMessage").style.color = "green";
+            localStorage.setItem("token", data.token);
+            setTimeout(() => {
+                window.location.href = "main.html";
+            }, 1000);
+        }
+    } catch (error) {
+        console.error("Login Error:", error);
+    }
+}
+
+    </script>
+    
 
 <!-- CSS Styles (Add in your styles.css) -->
 <style>
@@ -162,27 +234,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
  
 // Hardcoded credentials
-const validEmail = "admin@example.com";
-const validPassword = "123456";
+// const validEmail = "admin@example.com";
+// const validPassword = "123456";
 
-function login(event) {
-    event.preventDefault(); // Prevent form from submitting
+// function login(event) {
+//     event.preventDefault(); // Prevent form from submitting
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const errorMessage = document.getElementById("errorMessage");
+//     const email = document.getElementById("email").value;
+//     const password = document.getElementById("password").value;
+//     const errorMessage = document.getElementById("errorMessage");
 
-    if (email === validEmail && password === validPassword) {
-        alert("✅ Login successful!");
+//     if (email === validEmail && password === validPassword) {
+//         alert("✅ Login successful!");
         
-        // Delay redirect to ensure alert is displayed
-        setTimeout(() => {
-          window.location.href = "main.html"; // Ensure this path is correct
-        }, 500); 
-    } else {
-        errorMessage.textContent = "❌ Invalid email or password!";
-    }
-}
+//         // Delay redirect to ensure alert is displayed
+//         setTimeout(() => {
+//           window.location.href = "main.html"; // Ensure this path is correct
+//         }, 500); 
+//     } else {
+//         errorMessage.textContent = "❌ Invalid email or password!";
+//     }
+// }
 
 </script>
 
@@ -329,7 +401,7 @@ function login(event) {
         <img src="assets/image-8.jpg" alt="gallery" />
       </div>
       <div class="gallery__btn">
-        <button class="btn">VIEW GALLERY</button>
+        <!-- <button class="btn">VIEW GALLERY</button> -->
       </div>
     </section>
 
@@ -347,7 +419,7 @@ function login(event) {
             resonate with viewers on a deep level.
           </p>
           <div class="blog__btn">
-            <button class="btn">Read More</button>
+            <!-- <button class="btn">Read More</button> -->
           </div>
         </div>
       </div>
@@ -404,6 +476,26 @@ function login(event) {
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var swiper = new Swiper(".swiper", {
+          loop: true, // Enables continuous loop mode
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          autoplay: {
+            delay: 3000, // Adjusts auto-slide delay in milliseconds
+            disableOnInteraction: false,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      });
+    </script>
+    
     <script src="main.js"></script>
   </body>
 </html>

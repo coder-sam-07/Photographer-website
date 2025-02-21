@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography Website</title>
     <link rel="stylesheet" href="styles1.css">
+    <script type="text/javascript"
+     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      emailjs.init("ONwAQ7QktSh2tVIiY");
+      });
+
+    </script>
 </head>
 <body>
     <nav>
@@ -24,6 +34,19 @@
             </li>           
             <li><a href="#about">About Us</a></li>
             <li><a href="#contactus">Contact Us</a></li>
+            <li class="profile-container">
+              <div class="profile-icon" id="profileIcon">
+                  <img src="assets/man_4140048.png" alt="User">
+              </div>
+              <ul class="profile-dropdown" id="profileDropdown">
+                  <li>Admin</li>
+                  <!-- <li><a href="#">Profile</a></li>
+                  <li><a href="#">Settings</a></li> -->
+                  <li><a href="#" id="logoutBtn">Logout</a></li>
+              </ul>
+          </li>
+          
+          
         </ul>
     </nav>
     
@@ -52,6 +75,8 @@
         <img src="assets/image-3.jpg" alt="Portfolio Image 6">
         <img src="assets/image-2.jpg" alt="Portfolio Image 6">
         <img src="assets/image-7.jpg" alt="Portfolio Image 6">
+      
+
     </div>
 </section>
 
@@ -84,7 +109,7 @@
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2>Book Now</h2>
-        <form action="send_email.php" method="post">
+        <form >
             <label for="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
         

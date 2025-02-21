@@ -463,3 +463,77 @@ input, textarea {
 .submit-btn:hover {
   background: #4b7554;
 }
+
+/* Ensure profile container aligns properly */
+.profile-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Profile Icon Styling */
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Dropdown Styling */
+.profile-dropdown {
+  position: absolute;
+  top: 50px; /* Adjust to align with navbar */
+  right: 0;
+  background: rgba(255, 255, 255, 0.9); /* Matching navbar style */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 180px;
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  list-style: none; /* Removes dots */
+  padding: 0;
+}
+
+/* Show dropdown when active */
+.profile-dropdown.active {
+  display: flex;
+}
+
+/* Dropdown Items */
+.profile-dropdown li {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Remove border from last item */
+.profile-dropdown li:last-child {
+  border-bottom: none;
+}
+
+/* Dropdown Links */
+.profile-dropdown li a {
+  text-decoration: none;
+  color: #333; /* Adjust color to match navbar */
+  display: block;
+  transition: 0.3s;
+}
+
+/* Hover Effect */
+.profile-dropdown li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

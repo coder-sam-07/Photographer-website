@@ -322,7 +322,7 @@ nav {
 
 .blog {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("assets/blog.jpg");
+    url("assets/bottle-camera-sunglasses-earphone-map-diary-wooden-desk.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -341,6 +341,7 @@ nav {
   margin-bottom: 2rem;
   color: var(--white);
 }
+
 
 .blog__content h4 {
   margin-bottom: 1rem;

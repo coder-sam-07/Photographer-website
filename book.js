@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("bookingModal");
     const bookButtons = document.querySelectorAll(".book-btn");
-    const closeButton = document.querySelector(".close-btn");
+    const closeButtons = document.querySelectorAll(".close-btn");
 
     bookButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -9,8 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    closeButton.addEventListener("click", function () {
-        modal.style.display = "none";
+    closeButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            modal.style.display = "none";
+            successModal.style.display = "none";
+        });
     });
 
     window.addEventListener("click", function (event) {
