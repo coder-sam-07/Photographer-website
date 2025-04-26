@@ -33,16 +33,15 @@
                 </ul>
             </li>           
             <li><a href="#about">About Us</a></li>
-            <li><a href="#contactus">Contact Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
             <li class="profile-container">
               <div class="profile-icon" id="profileIcon">
                   <img src="assets/man_4140048.png" alt="User">
               </div>
               <ul class="profile-dropdown" id="profileDropdown">
-                  <li>Admin</li>
-                  <!-- <li><a href="#">Profile</a></li>
-                  <li><a href="#">Settings</a></li> -->
-                  <li><a href="#" id="logoutBtn">Logout</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+                
               </ul>
           </li>
           
@@ -78,6 +77,24 @@
       
 
     </div>
+    <div id="portfolio-gallery"></div>
+
+<script>
+fetch("http://localhost:3000/portfolio-images")
+  .then(res => res.json())
+  .then(data => {
+    const gallery = document.getElementById("portfolio-gallery");
+    data.images.forEach(src => {
+      const img = document.createElement("img");
+      img.src = `http://localhost:3000${src}`;
+      img.style.width = "200px";
+      img.style.margin = "10px";
+      gallery.appendChild(img);
+    });
+  });
+</script>
+
+
 </section>
 
 <section id="services">
@@ -170,7 +187,8 @@
     <img src="assets/logo-dark.png" alt="logo" />
   </div>
    
-  <footer id="contact">
+  <div id="contact">
+  <footer>
     <div class="section__container footer__container">
       <div class="footer__col">
         <img src="assets/logo-dark.png" alt="logo" />
@@ -204,6 +222,7 @@
       Copyright © 2024 Web Design Mastery. All rights reserved.
     </div>
   </footer>
+  </div>
   <script src="book.js"></script>  
   <script src="script.js"></script>
 </body>

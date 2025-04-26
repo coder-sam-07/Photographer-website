@@ -97,4 +97,134 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// app.get("/", (req, res) => {
+//     res.send("Server is running...");
+// });
 
+// const express = require("express");
+// const mysql = require("mysql");
+// const cors = require("cors");
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+// const nodemailer = require("nodemailer");
+// const crypto = require("crypto");
+
+// const app = express();
+// const port = 3000;  // ✅ Port Defined
+// // const cors = require("cors");
+// app.use(cors({ origin: "http://127.0.0.1:5500/forgot-password.html" }));  // ✅ Allow frontend to call API
+// // app.use(cors());
+// app.use(express.json());
+// // Check if server is running
+// app.get("/", (req, res) => {
+//     res.send("Server is running...");
+// });
+
+// // MySQL Database Connection
+// const db = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "",
+//     database: "user_db"
+// });
+
+// db.connect(err => {
+//     if (err) console.error("Database connection failed:", err);
+//     else console.log("Connected to MySQL database");
+// });
+
+// app.get("/", (req, res) => {
+//     res.send("Server is running...");
+// });
+
+// // ✅ Forgot Password Route
+// app.post("/forgot-password", (req, res) => {
+//     console.log("Forgot Password API Hit! Request Body:", req.body);  // ✅ Debug Log
+//     const { email } = req.body;
+//     if (!email) {
+//         return res.status(400).json({ message: "Email is required" });
+//     }
+    
+//     const token = crypto.randomBytes(20).toString("hex");
+//     const expirationTime = Date.now() + 3600000; // 1 hour expiry
+
+//     const query = "SELECT * FROM users WHERE email = ?";
+//     db.query(query, [email], (err, results) => {
+//         if (err || results.length === 0) {
+//             console.log("Email not found:", email);  // ✅ Debug Log
+//             return res.status(400).json({ message: "Email not found" });
+//         }
+
+//         const updateQuery = "UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE email = ?";
+//         db.query(updateQuery, [token, expirationTime, email], (err) => {
+//             if (err) {
+//                 console.log("Error updating token:", err);
+//                 return res.status(500).json({ message: "Error updating token" });
+//             }
+
+//             console.log("Reset link sent to:", email);
+//             sendResetEmail(email, token);
+//             res.json({ message: "Password reset link sent to your email" });
+//         });
+//     });
+// });
+
+// // ✅ Reset Password Route
+// app.post("/reset-password", async (req, res) => {
+//     const { token, password } = req.body;
+
+//     const query = "SELECT * FROM users WHERE reset_token = ? AND reset_token_expiry > ?";
+//     db.query(query, [token, Date.now()], async (err, results) => {
+//         if (err || results.length === 0) {
+//             return res.status(400).json({ success: false, message: "Invalid or expired token" });
+//         }
+
+//         const hashedPassword = await bcrypt.hash(password, 10);
+//         const updateQuery = "UPDATE users SET password = ?, reset_token = NULL, reset_token_expiry = NULL WHERE reset_token = ?";
+
+//         db.query(updateQuery, [hashedPassword, token], (err) => {
+//             if (err) return res.status(500).json({ success: false, message: "Error updating password" });
+
+//             res.json({ success: true, message: "Password reset successful!" });
+//         });
+//     });
+// });
+
+// // ✅ Function to Send Email via EmailJS
+// function sendResetEmail(email, token) {
+//     const resetLink = `http://127.0.0.1:5500/reset-password.html?token=${token}`;
+
+//     var templateParams = {
+//         to_email: email,
+//         reset_link: resetLink
+//     };
+
+//     emailjs.send("service_wzp23z1", "template_ej859im", templateParams, "ONwAQ7QktSh2tVIiY")
+//         .then(response => console.log("Email sent:", response))
+//         .catch(error => console.error("Error sending email:", error));
+// }
+
+// // Start Server
+// app.listen(port, () => {
+//     console.log(`Server running on http://localhost:${port}`);
+// });
+
+// Handle Admin modal popup
+const adminLink = document.querySelector('#profileDropdown a[href="#"]');
+const adminModal = document.getElementById('adminModal');
+const closeAdminModal = document.getElementById('closeAdminModal');
+
+adminLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  adminModal.style.display = 'block';
+});
+
+closeAdminModal.addEventListener('click', () => {
+  adminModal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target == adminModal) {
+    adminModal.style.display = 'none';
+  }
+});

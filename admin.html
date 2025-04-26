@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      text-align: center;
+      padding: 50px;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #statusMsg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    #portfolio-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    #portfolio-gallery img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Admin Panel - Upload Portfolio Photo</h1>
+
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="image" required />
+    <br />
+    <button type="submit">Upload Photo</button>
+  </form>
+
+  <p id="statusMsg"></p>
+
+  <h2>My Portfolio</h2>
+  <div id="portfolio-gallery"></div>
+
+  <script>
+    // Upload image
+    document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      const response = await fetch("http://localhost:3000/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+      const msg = document.getElementById("statusMsg");
+
+      if (response.ok) {
+        msg.innerText = "✅ Photo uploaded successfully!";
+        msg.style.color = "green";
+        loadPortfolio(); // Refresh gallery
+      } else {
+        msg.innerText = "❌ Upload failed!";
+        msg.style.color = "red";
+      }
+
+      this.reset(); // Clear the file input
+    });
+
+    // Load portfolio images
+    async function loadPortfolio() {
+      const res = await fetch("http://localhost:3000/portfolio-images");
+      const data = await res.json();
+
+      const gallery = document.getElementById("portfolio-gallery");
+      gallery.innerHTML = ""; // Clear previous images
+
+      data.images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = `http://localhost:3000${src}`;
+        gallery.appendChild(img);
+      });
+    }
+
+    // Load on page load
+    window.onload = loadPortfolio;
+  </script>
+
+</body>
+</html>
